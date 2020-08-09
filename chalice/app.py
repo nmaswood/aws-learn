@@ -6,4 +6,5 @@ app = Chalice(app_name="chalice")
 
 @app.route("/")
 def index():
-    return A.hello_world()
+    A.kafka.produce()
+    return {"something": "is on the queue"}

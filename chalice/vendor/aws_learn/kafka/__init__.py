@@ -3,7 +3,6 @@ from typing import Union, Literal
 
 import argparse
 
-
 UsageType = Union[Literal["producer"], Literal["consumer"]]
 
 
@@ -11,6 +10,7 @@ def _parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--type", type=str, choices=["consumer", "producer"], required=True
+    )
     return parser.parse_args()
 
 
