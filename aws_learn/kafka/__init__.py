@@ -8,13 +8,9 @@ UsageType = Union[Literal["producer"], Literal["consumer"]]
 
 
 def _parse_args():
-    parser = argparse.ArgumentParser(
-        description="Get n most common from a list of values"
-    )
+    parser = argparse.ArgumentParser()
     parser.add_argument(
         "--type", type=str, choices=["consumer", "producer"], required=True
-    )
-
     return parser.parse_args()
 
 

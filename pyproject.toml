@@ -10,6 +10,7 @@ pylint = "^2.5.3"
 confluent-kafka = "^1.5.0"
 black = "^19.10b0"
 flake8 = "^3.8.3"
+boto3 = "^1.14.38"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
