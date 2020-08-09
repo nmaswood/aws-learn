@@ -1,29 +1,13 @@
 import os
-from typing import Union, Literal
 import json
-import argparse
 
 from confluent_kafka import Producer, Consumer
 
-
-
-UsageType = Union[Literal['producer'], Literal['consumer']]
-
-topic = 'nasr-test-topic'
-KAFKA_KEY = os.environ['KAFKA_KEY']
-KAFKA_SECRET = os.environ['KAFKA_SECRET']
-KAFKA_BOOTSTRAP= os.environ['KAFKA_BOOTSTRAP']
+from aws_learn.kafka.Constants import DEFAULT_TOPIC, CONFIG
 
 
 def consume():
-    c = Consumer({
-        'bootstrap.servers': KAFKA_BOOTSTRAP,
-        'sasl.username': KAFKA_KEY,
-        'sasl.password': KAFKA_SECRET,
-        'sasl.mechanism': 'PLAIN',
-        'security.protocol': 'SASL_SSL',
-        'group.id': 'consumer-1',
-    })
+    c = Consumer({**CONFIG, **{"group.id": "consumer-1"}})
 
     c.subscribe([topic])
 
@@ -35,33 +19,31 @@ def consume():
                 print("Message was none")
                 continue
             elif msg.error():
-                print('error: {}'.format(msg.error()))
+                print("error: {}".format(msg.error()))
             else:
                 # Check for Kafka message
                 record_key = msg.key()
                 record_value = msg.value()
                 data = json.loads(record_value)
-                count = data['count']
+                count = data["count"]
                 total_count += count
-                print("Consumed record with key {} and value {}, \
-                      and updated total count to {}"
-                      .format(record_key, record_value, total_count))
+                print(
+                    "Consumed record with key {} and value {}, \
+                      and updated total count to {}".format(
+                        record_key, record_value, total_count
+                    )
+                )
     except KeyboardInterrupt:
         pass
     finally:
         # Leave group and commit final offsets
         c.close()
 
-    print ("Let's start consuming")
+    print("Let's start consuming")
+
 
 def produce():
-    p = Producer({
-        'bootstrap.servers': KAFKA_BOOTSTRAP,
-        'sasl.username': KAFKA_KEY,
-        'sasl.password': KAFKA_SECRET,
-        'sasl.mechanism': 'PLAIN',
-        'security.protocol': 'SASL_SSL',
-    })
+    p = Producer(CONFIG)
 
     delivered_records = [0]
 
@@ -76,12 +58,15 @@ def produce():
             print("Failed to deliver message: {}".format(err))
         else:
             delivered_records[0] += 1
-            print("Produced record to topic {} partition [{}] @ offset {}"
-                  .format(msg.topic(), msg.partition(), msg.offset()))
+            print(
+                "Produced record to topic {} partition [{}] @ offset {}".format(
+                    msg.topic(), msg.partition(), msg.offset()
+                )
+            )
 
     for n in range(10):
         record_key = "alice"
-        record_value = json.dumps({'count': n})
+        record_value = json.dumps({"count": n})
         print("Producing record: {}\t{}".format(record_key, record_value))
         p.produce(topic, key=record_key, value=record_value, on_delivery=acked)
         # p.poll() serves delivery reports (on_delivery)
@@ -92,25 +77,5 @@ def produce():
 
     print("{} messages were produced to topic {}!".format(delivered_records[0], topic))
 
-    print ("Let's start producing")
-
-
-def parse_args():
-    parser = argparse.ArgumentParser(
-        description='Get n most common from a list of values')
-    parser.add_argument('--type', type=str, choices=['consumer', 'producer'], required=True)
-
-    return parser.parse_args()
-
-
-if __name__ == '__main__':
-
-    args = parse_args()
-    if args.type == 'consumer':
-        consume()
-    elif args.type == 'producer':
-        produce()
-    else:
-        raise Exception("bad arg")
-
+    print("Let's start producing")
 

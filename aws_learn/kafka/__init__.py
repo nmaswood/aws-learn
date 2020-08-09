@@ -1,4 +1,7 @@
-# from aws_learn.kafka.kafka import produce, consume
+from aws_learn.kafka.kafka import produce, consume
+from typing import Union, Literal
+
+import argparse
 
 
 UsageType = Union[Literal["producer"], Literal["consumer"]]

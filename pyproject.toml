@@ -9,10 +9,13 @@ python = "^3.8"
 pylint = "^2.5.3"
 confluent-kafka = "^1.5.0"
 black = "^19.10b0"
+flake8 = "^3.8.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 black = "^19.10b0"
+jedi = "^0.17.2"
+flake8 = "^3.8.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0a5"]

@@ -1,3 +1,5 @@
+import os
+
 DEFAULT_TOPIC = "nasr-test-topic"
 KAFKA_KEY = os.environ["KAFKA_KEY"]
 KAFKA_SECRET = os.environ["KAFKA_SECRET"]
