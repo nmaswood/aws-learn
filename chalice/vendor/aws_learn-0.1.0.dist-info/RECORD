@@ -1,0 +1,14 @@
+aws_learn/__init__.py,sha256=veWCKJpRr56wFNjhayTNbP9FpQYqlpJUvqy3T1V8FL8,85
+aws_learn/chalice/.gitignore,sha256=3pCUSwPPT5LuMD6LkRqduhogo9MfI0mN9EiSJIEgrlY,37
+aws_learn/chalice/app.py,sha256=D2h-JBZ8NIeH1PoB4fX_twRMx_W4myGOrhHySuWFMQE,134
+aws_learn/kafka/Constants.py,sha256=GVLMkMjqm7hwG2idgdDrI0wcgN5HJOafNzA3qPsRzwE,362
+aws_learn/kafka/__init__.py,sha256=NQza5aJ3rWM5aOlbHIs9B7qX4xD8NAPQ_FoD7a7-_bI,557
+aws_learn/kafka/kafka.py,sha256=YNSVwKhxuzf4CMbhFtsYAN9bi6nMQgluoeXWJRbAg9M,2324
+aws_learn/sql/Constants.py,sha256=mudHFoSWnGBziqF38Qm5LkIIcNdH__-oTVQc-15aYvk,161
+aws_learn/sql/__init__.py,sha256=z_3_zrJzjTyyDooTzfin6AnIR7sYx6SK0owt1SxqNoY,378
+aws_learn/sqs/Constants.py,sha256=zAJUNPEVQCPohZ-jGk1u2Wol_WOuFNFA5yY5Q3Acel0,109
+aws_learn/sqs/__init__.py,sha256=b0qQaOL1_w-8UOFOAauqXEpJL_RjhI8HWcgfS6mAR-Y,524
+aws_learn/sqs/sqs.py,sha256=6Toqj2vK-Cx8dx4KIepsAfFtRMnJa0rOWg_gKUOa34E,1580
+aws_learn-0.1.0.dist-info/WHEEL,sha256=jM75OLmO0bF2QZxXmlw3A-IE58epFjnoGYhyw7ywvsc,85
+aws_learn-0.1.0.dist-info/METADATA,sha256=TYS5CrpQuqXAEEflVPBRtHwOBEygQhmJdYHj1x4AIlE,583
+aws_learn-0.1.0.dist-info/RECORD,,
