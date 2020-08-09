@@ -1,4 +1,3 @@
-import os
 import json
 
 from confluent_kafka import Producer, Consumer
@@ -9,7 +8,7 @@ from aws_learn.kafka.Constants import DEFAULT_TOPIC, CONFIG
 def consume():
     c = Consumer({**CONFIG, **{"group.id": "consumer-1"}})
 
-    c.subscribe([topic])
+    c.subscribe([DEFAULT_TOPIC])
 
     total_count = 0
     try:
@@ -68,14 +67,14 @@ def produce():
         record_key = "alice"
         record_value = json.dumps({"count": n})
         print("Producing record: {}\t{}".format(record_key, record_value))
-        p.produce(topic, key=record_key, value=record_value, on_delivery=acked)
-        # p.poll() serves delivery reports (on_delivery)
-        # from previous produce() calls.
+        p.produce(DEFAULT_TOPIC, key=record_key, value=record_value, on_delivery=acked)
+
         p.poll(0)
 
     p.flush()
 
-    print("{} messages were produced to topic {}!".format(delivered_records[0], topic))
-
-    print("Let's start producing")
-
+    print(
+        "{} messages were produced to topic {}!".format(
+            delivered_records[0], DEFAULT_TOPIC
+        )
+    )
